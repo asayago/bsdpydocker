@@ -18,6 +18,7 @@ RUN apt-get -y update && \
 		python-pip \
 		nginx \
 		tftpd-hpa && \
+		apt-get clean && \
 		rm -rf /var/lib/apt/lists/*
 
 # Download the bsdpserver and pydhcp code from the githubs, and install
