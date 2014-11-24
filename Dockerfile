@@ -3,8 +3,8 @@
 # Taken from Pepijn Bruienne's work
 
 
-# Start from Ubuntu 14.04
-FROM ubuntu:14.04
+# Start from Debian to save space - about 100mb smaller than Ubuntu
+FROM debian:wheezy
 
 MAINTAINER Calum Hunter (calum.h@gmail.com)
 
