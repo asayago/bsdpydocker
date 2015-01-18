@@ -22,7 +22,7 @@ RUN apt-get -y update && \
 		rm -rf /var/lib/apt/lists/*
 
 # Download the bsdpserver and pydhcp code from the githubs, and install
-RUN git clone https://bitbucket.org/bruienne/bsdpy.git -b dev && \
+RUN git clone https://bitbucket.org/bruienne/bsdpy.git && \
 	git clone https://github.com/bruienne/pydhcplib.git && \
 	cd /pydhcplib; python setup.py install && \
 	pip install docopt && \
@@ -39,7 +39,7 @@ RUN chown -R root:root /etc/nginx/nginx.conf && \
 
 # Expose our ports to the world
 EXPOSE 67/udp
-EXPOSE 68/udp
+EXPOSE 69/udp
 EXPOSE 80
 
 # Set the default variables as environmentals
