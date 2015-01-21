@@ -32,7 +32,7 @@ I then upload my NetBootImage.nbi file to this folder, you could do this via SMB
 
 Once your have your NetBoot image on your machine, you now just need to run the container
 
-    docker run --restart=on-failure:10 -d -v /nbi:/nbi -p 0.0.0.0:69:69/udp -p 0.0.0.0:67:67/udp -p 0.0.0.0:80:80 -e DOCKER_BSDPY_IP=YourLinuxServerIP --name netboot_server hunty1/bsdpydocker
+    docker run --restart=always -d -v /nbi:/nbi -p 0.0.0.0:69:69/udp -p 0.0.0.0:67:67/udp -p 0.0.0.0:80:80 -e DOCKER_BSDPY_IP=YourLinuxServerIP --name netboot_server hunty1/bsdpydocker
 
 ## Breakdown of options and settings
 
@@ -40,11 +40,10 @@ So there is a lot of options and arguments in the above command. Let me break th
 
 ** docker run **
 
-    docker run --restart=on-failure:10 -d
+    docker run --restart=always -d
 
-Basically the above is saying go ahead and run a docker image, if the container exits with a non-zero exit code, like if the linux host was powered off
-Then the next time that docker loads, it will try to restart this container. But only try 10 times, you can increase or decrease this by changing the number.
-The -d flag means run in daemonized mode rather than interactive.
+Basically the above is saying go ahead and run a docker image, if the container exits, like if the linux host was powered off.
+Then the next time that docker loads, it will try to restart this container. The -d flag means run in daemonized mode rather than interactive.
 
 ** Volumes **
 
@@ -66,7 +65,9 @@ on ports 69 and 67 from the linux host to our container. We are also forwarding 
  
 The -e flag here is passing an environmental variable to our container. The variable is `DOCKER_BSDPY_IP`
 Essentially we need to tell our container what the IP address is of our linux host, so make sure this is set correctly.
-ie. `-e DOCKER_BSDPY_IP=192.168.0.1`
+ie. 
+
+`-e DOCKER_BSDPY_IP=192.168.0.1`
 
 ** Name of container **
 
