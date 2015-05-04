@@ -2,6 +2,9 @@
 # Hopefully a much smaller image
 # Taken from Pepijn Bruienne's work
 
+# Version	:	Dev 
+# Date		:	04-05-15
+
 
 # Start from Debian to save space - about 100mb smaller than Ubuntu
 FROM debian:wheezy
