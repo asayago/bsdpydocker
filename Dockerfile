@@ -2,6 +2,10 @@
 # Hopefully a much smaller image
 # Taken from Pepijn Bruienne's work
 
+# Version	: Prod
+# Date		: 21-01-2015
+# Git rev 	: 192a339
+# Tag		: latest
 
 # Start from Debian to save space - about 100mb smaller than Ubuntu
 FROM debian:wheezy
@@ -23,6 +27,8 @@ RUN apt-get -y update && \
 
 # Download the bsdpserver and pydhcp code from the githubs, and install
 RUN git clone https://bitbucket.org/bruienne/bsdpy.git && \
+	cd /bsdpy && \
+	git checkout 192a339 && \
 	git clone https://github.com/bruienne/pydhcplib.git && \
 	cd /pydhcplib; python setup.py install && \
 	pip install docopt && \
