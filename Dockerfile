@@ -27,11 +27,11 @@ RUN apt-get -y update && \
 
 # Download the bsdpserver and pydhcp code from the githubs, and install
 RUN git clone https://bitbucket.org/bruienne/bsdpy.git && \
-	cd /bsdpy && \
-	git checkout 192a339 && \
 	git clone https://github.com/bruienne/pydhcplib.git && \
 	cd /pydhcplib; python setup.py install && \
 	pip install docopt && \
+	cd /bsdpy && \
+	git checkout 192a339 && \
 	mkdir /nbi
 
 # Add the configuration file for NginX and the start script for bsdpyserver
