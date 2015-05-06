@@ -11,6 +11,13 @@ FROM debian:wheezy
 
 MAINTAINER Calum Hunter (calum.h@gmail.com)
 
+ENV DEBIAN_FRONTEND noninteractive
+
+# Set the default variables as environmentals
+ENV DOCKER_BSDPY_IFACE eth0
+ENV DOCKER_BSDPY_PROTO http
+ENV DOCKER_BSDPY_PATH /nbi
+
 # Add the packages we need from apt then remove the cached list saving some disk space
 RUN apt-get -y update && \
 	apt-get install -y git-core \
@@ -44,10 +51,5 @@ RUN chown -R root:root /etc/nginx/nginx.conf && \
 EXPOSE 67/udp
 EXPOSE 69/udp
 EXPOSE 80
-
-# Set the default variables as environmentals
-ENV DOCKER_BSDPY_IFACE eth0
-ENV DOCKER_BSDPY_PROTO http
-ENV DOCKER_BSDPY_PATH /nbi
 
 ENTRYPOINT ["/start.sh"]
