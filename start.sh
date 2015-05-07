@@ -6,4 +6,4 @@ sleep 2
 #cd /bsdpy
 #./bsdpserver.py -i ${DOCKER_BSDPY_IFACE} -r ${DOCKER_BSDPY_PROTO} -p ${DOCKER_BSDPY_PATH} &
 #sleep 2
-#tail -f /var/log/bsdpserver.log
+tail -f /var/log/nginx-error.log
