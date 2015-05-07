@@ -29,9 +29,9 @@ RUN apt-get -y update && \
 		rm -rf /var/lib/apt/lists/*
 
 # Set up the directories and log files
-RUN	mkdir /nbi && \
-    mkdir /bsdpy && \
-    touch /var/log/bsdpserver.log
+RUN mkdir /nbi && \
+	mkdir /bsdpy && \
+	touch /var/log/bsdpserver.log
 
 # Add all our files and scripts
 ADD nginx.conf /etc/nginx/nginx.conf
