@@ -32,7 +32,7 @@ I then upload my NetBootImage.nbi file to this folder, you could do this via SMB
 
 Once your have your NetBoot image on your machine, you now just need to run the container
 
-    docker run --restart=always -d -v /nbi:/nbi -p 0.0.0.0:69:69/udp -p 0.0.0.0:67:67/udp -p 0.0.0.0:80:80 -e DOCKER_BSDPY_IP=YourLinuxServerIP --name netboot_server hunty1/bsdpydocker
+    docker run --restart=always -d -v /nbi:/nbi -p 67:67/udp -p 69:69/udp -p 80:80 -e BSDPY_IP=YourLinuxServerIP --name netboot_server hunty1/bsdpydocker
 
 ## Breakdown of options and settings
 
@@ -54,20 +54,20 @@ to have access to /nbi and thus our NetBoot image. Think of it like a shared fol
 
 ** Ports **
 
-    -p 0.0.0.0:69:69/udp -p 0.0.0.0:67:67/udp -p 0.0.0.0:80:80
+    -p 69:69/udp -p 67:67/udp -p 80:80
 
 The -p flag here just maps the ports from the linux host to the bsdpy container. What we are doing here is taking basically forwarding all the UDP traffic
 on ports 69 and 67 from the linux host to our container. We are also forwarding UDP and TCP traffic on port 80 from the linux host to the container.
 
 ** Environmental Variables **
 
-    -e DOCKER_BSDPY_IP=YourLinuxServerIP
+    -e BSDPY_IP=YourLinuxServerIP
  
 The -e flag here is passing an environmental variable to our container. The variable is `DOCKER_BSDPY_IP`
 Essentially we need to tell our container what the IP address is of our linux host, so make sure this is set correctly.
 ie. 
 
-`-e DOCKER_BSDPY_IP=192.168.0.1`
+`-e BSDPY_IP=192.168.0.1`
 
 ** Name of container **
 
@@ -82,7 +82,7 @@ We already downloaded or pulled the image in the very first steps with `docker p
 
 You could just run just the one line
 
-    docker run --restart=on-failure:10 -d -v /nbi:/nbi -p 0.0.0.0:69:69/udp -p 0.0.0.0:67:67/udp -p 0.0.0.0:80:80 -e DOCKER_BSDPY_IP=YourLinuxServerIP --name netboot_server hunty1/bsdpydocker
+    docker run --restart=on-failure:10 -d -v /nbi:/nbi -p 67:67/udp -p 69:69/udp -p 80:80 -e BSDPY_IP=YourLinuxServerIP --name netboot_server hunty1/bsdpydocker
 
 And it will download the image, and start the netboot service, all in one go.
 

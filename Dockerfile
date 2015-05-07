@@ -1,9 +1,10 @@
 # Dockerfile for BSDPy
-# Hopefully a much smaller image
-# Taken from Pepijn Bruienne's work
+# All in one container, tftp, nginx and bsdpy
+# Graciously taken from Pepijn Bruienne's work
 
-# Version	:	Dev 
-# Date		:	04-05-15
+# Version		:	Dev 
+# Date			:	04-05-15
+# BSDPy Commit	:	8a011fc
 
 # Start from Debian to save space - about 100mb smaller than Ubuntu
 FROM debian:wheezy
