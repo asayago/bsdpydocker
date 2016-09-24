@@ -13,10 +13,6 @@ MAINTAINER Calum Hunter (calum.h@gmail.com)
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV BSDPY_IFACE eth0
-ENV BSDPY_IP 127.0.0.1
-ENV BSDPY_PROTO http
-
 # Add the packages we need from apt then remove the cached list saving some disk space
 RUN apt-get -y update && \
 	apt-get install -y curl \
